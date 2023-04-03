@@ -9,27 +9,29 @@ class AnalyticSolutionKarman():
         self.a = a
         self.b = b
         self.Gamma = Gamma
+        self.N = 1000
 
-    def plot_steady_karman_streamlines(self):
+    # Define the function for the net velocity potential
+    def net_velocity_potential(self, z):
         a = self.a
         b = self.b
         Gamma = self.Gamma
-        
-        # Define the function for the net velocity potential
-        def net_velocity_potential(z):
-            zv1 = np.array([2*(n+1)*a+b*1j for n in range(-100, 101)]).reshape(1, 1, 201)
-            zv2 = np.array([2*n*a-b*1j for n in range(-100, 101)]).reshape(1, 1, 201)
-            return Gamma/(2*np.pi) * (np.sum(-1j/(z.reshape(N, N, 1)-zv1), axis=2) - np.sum(-1j/(z.reshape(N, N, 1)-zv2), axis=2))
+        N = self.N
+        zv1 = np.array([2*(n+1)*a+b*1j for n in range(-100, 101)]).reshape(1, 1, 201)
+        zv2 = np.array([2*n*a-b*1j for n in range(-100, 101)]).reshape(1, 1, 201)
+        return Gamma/(2*np.pi) * (np.sum(-1j/(z.reshape(N, N, 1)-zv1), axis=2) - np.sum(-1j/(z.reshape(N, N, 1)-zv2), axis=2))
+
+    def plot_steady_karman_streamlines(self):
+        N = self.N
 
         # Create a grid of complex numbers in the complex plane
-        N = 1000
         x = np.linspace(-20, 20, N)
         y = np.linspace(-20, 20, N)
         X, Y = np.meshgrid(x, y)
         Z = X + 1j*Y
 
         # Evaluate the net velocity potential at each point in the complex plane
-        W = net_velocity_potential(Z)
+        W = self.net_velocity_potential(Z)
 
         # Plot the magnitude and phase of the net velocity potential
         fig, ax = plt.subplots()
