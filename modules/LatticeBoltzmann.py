@@ -17,7 +17,7 @@ def main():
 	
 	# Simulation parameters
 	Nx                     = 400    # resolution x-dir
-	Ny                     = 200    # resolution y-dir
+	Ny                     = 100    # resolution y-dir
 	rho0                   = 100    # average density
 	tau                    = 0.6    # collision timescale
 	Nt                     = 4000   # number of timesteps
