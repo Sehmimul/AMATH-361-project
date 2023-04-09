@@ -69,10 +69,14 @@ def main():
 		
 		
 		# Apply Collision
+		"""
+		Note that the Feq has dimention ny,nx,9
+		This means Feq is different for each lattice point which agrees with my
+		hypothesis of using f_{i,\mu} instead of f_{i}.
+		"""
 		Feq = np.zeros(F.shape)
 		for i, cx, cy, w in zip(idxs, cxs, cys, weights):
 			Feq[:,:,i] = rho * w * ( 1 + 3*(cx*ux+cy*uy)  + 9*(cx*ux+cy*uy)**2/2 - 3*(ux**2+uy**2)/2 )
-		
 		F += -(1.0/tau) * (F - Feq)
 		
 		# Apply boundary 
