@@ -1,7 +1,6 @@
 # imports
 
 # module imports
-from modules.DataLoader import DataLoader
 from modules.AnalyticSolution import AnalyticSolutionKarman
 
 def main():
