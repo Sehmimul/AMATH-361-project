@@ -45,7 +45,7 @@ def image_to_gif(mypath, gif_name, imagetype):
     print('Gif creation done!')
     return 0
 
-
+# 500000000
 # parameters
 config_file = "../config.json"
 with open(config_file) as file:
@@ -64,7 +64,7 @@ rhoo = 1.    # mean value of the density
 mu = 0.001
 eta = rhoo*v0*2*rayon/Re  # shear viscosity
 # initialization
-xmin, xmax, ymin, ymax = 0., 6., 0., 3.
+xmin, xmax, ymin, ymax = 0., 4., 0., 2.
 dummy = 3.0/(la*rhoo*dx)
 s_mu = 1.0/(0.5+mu*dummy)
 s_eta = 1.0/(0.5+eta*dummy)
@@ -134,9 +134,10 @@ for i in range(0, len(time)):
     ax = fig[0]
     im = ax.image(vorticity(sol).transpose(), clim=[-3., 0])
     ax.ellipse([.3/dx, 0.5*(ymin+ymax)/dx], [rayon/dx, rayon/dx], 'r')
-    ax.title = 'Von Karman vortex street at t = {0:f}'.format(sol.t)
+    ax.title = 'Karman vortex street at t = {0:f} and Reynold number {1:f}'.format(sol.t,Re)
     plt.savefig(
         '../output/plot' + str(i) + '.png', format="png")
+    plt.close()
 # fig.show()
 
 image_to_gif(mypath='../output/', gif_name='Plot.gif', imagetype='png')

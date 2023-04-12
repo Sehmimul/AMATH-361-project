@@ -1,5 +1,5 @@
 {
-    "num_frames": 100,
-    "reynolds_no": 500,
-    "final_time": 150
+    "num_frames": 80,
+    "reynolds_no": 50000000,
+    "final_time": 200
 }
