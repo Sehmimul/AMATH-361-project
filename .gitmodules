@@ -1,0 +1,3 @@
+[submodule "modules/latticeboltzmann"]
+	path = modules/latticeboltzmann
+	url = https://github.com/pmocz/latticeboltzmann-python
